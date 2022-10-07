@@ -29,10 +29,9 @@ if status is-interactive
   alias o=open
   alias screenshot=gnome-screenshot
 
-  # built in open function leaked output
+  # built in open function did not like launching nvim
   function  open
-    # suppress annoying warnings when opening apps via shell
-    xdg-open $argv &>/dev/null &
+    xdg-open $argv 
   end
 
 
