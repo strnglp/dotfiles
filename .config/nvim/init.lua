@@ -9,7 +9,6 @@ vim.cmd([[
 set termguicolors
 set spell spelllang=en_us
 
-set background=dark
 colorscheme pencil
 hi Normal guibg=NONE ctermbg=NONE
 

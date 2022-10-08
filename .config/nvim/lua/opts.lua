@@ -4,7 +4,12 @@ local cmd = vim.api.nvim_command
 
 -- [[ Theme ]]
 opt.syntax = 'on'
-opt.background='light'
+opt.background='dark'
+
+-- mouse in all modes
+opt.mouse='a'
+-- yank to clipboard and primary selection (mouse 3)
+opt.clipboard:prepend {'unnamed', 'unnamedplus'}
 
 -- file handling
 opt.modelines = 0
