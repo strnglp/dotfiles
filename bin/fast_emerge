@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# make a tmpfs for builds to use
-sudo mount -t tmpfs tmpfs /var/tmp/portage/ -o size=8G,uid=portage,gid=portage,mode=775,nosuid,noatime
-sudo emerge $@
-sudo umount /var/tmp/portage/

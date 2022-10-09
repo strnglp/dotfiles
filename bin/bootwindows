@@ -1,3 +1,0 @@
-#!/bin/sh
-sudo efibootmgr -n 000D
-sudo reboot

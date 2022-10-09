@@ -1,6 +1,6 @@
 if status is-interactive
 
-  fish_add_path /home/jv/bin/
+  source ~/.profile
 
   # hide help greeting
   set -g fish_greeting
@@ -26,14 +26,5 @@ if status is-interactive
   alias r=ranger
   alias v=nvim
   alias g=grep
-  alias o=open
-  alias screenshot=gnome-screenshot
 
-  # built in open function did not like launching nvim
-  function  open
-    xdg-open $argv 
-  end
-
-
-  cat /etc/motd  
 end
