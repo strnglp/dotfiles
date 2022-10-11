@@ -26,5 +26,4 @@ if status is-interactive
   alias r=ranger
   alias v=nvim
   alias g=grep
-
 end
