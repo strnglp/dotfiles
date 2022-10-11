@@ -29,4 +29,6 @@ map('n', '<C-k>', [[:bp<CR>]], { noremap = true })
 map('n', '<C-x>', [[:bd<CR>]], { noremap = true })
 
 -- fuzz find with telescope.vim
-map('n', '<leader>f', [[:Telescope find_files<CR>]], { noremap = true })
+map('n', '<leader>f', '<cmd>lua require("telescope.builtin").find_files({ no_ignore = false, hidden = true })<CR>', { noremap = true })
+map('n', '<leader>r', '<cmd>lua require("telescope.builtin").live_grep()<CR>', { noremap = true })
+
