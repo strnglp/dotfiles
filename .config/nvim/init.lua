@@ -3,11 +3,12 @@ require('plug')         -- Plugins
 require('vars')         -- Variables
 require('opts')         -- Options
 require('keys')         -- Keymaps
+require('lsp')          -- LSP
 
 -- not sure how to do this in lua yet
 vim.cmd([[
 set termguicolors
-set spell spelllang=en_us
+"set spell spelllang=en_us
 
 colorscheme pencil
 hi Normal guibg=NONE ctermbg=NONE
