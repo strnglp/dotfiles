@@ -5,6 +5,7 @@ local cmd = vim.api.nvim_command
 -- [[ Theme ]]
 opt.syntax = 'on'
 opt.background='dark'
+opt.termguicolors = true
 
 -- mouse in all modes
 opt.mouse='a'
