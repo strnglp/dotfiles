@@ -35,6 +35,7 @@ opt.scrolloff = 3
 opt.laststatus = 2
 opt.textwidth = 79
 opt.relativenumber = true
+opt.number = true
 
 -- status line
 opt.ruler = true
@@ -56,3 +57,7 @@ opt.smartcase = true
 opt.incsearch = true
 opt.showmatch = true
 opt.ignorecase = true
+
+-- for autocompletion snippets
+opt.completeopt = {'menu', 'menuone', 'noselect'}
+
