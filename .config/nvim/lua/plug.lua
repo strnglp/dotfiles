@@ -37,6 +37,8 @@ return require('packer').startup(function(use)
   }
 
   use 'mhinz/vim-startify'-- start page
+
+  -- [[ Writing ]]
   use 'junegunn/goyo.vim' -- distraction free writing
   use 'wuelnerdotexe/vim-astro' -- blog dev
   -- live preview markdown in browser
@@ -88,13 +90,7 @@ return require('packer').startup(function(use)
   use {
     "folke/lsp-trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
+    config = function() require("trouble").setup() end
   }
 
   -- [[ Themes ]]
