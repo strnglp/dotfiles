@@ -26,4 +26,6 @@ if status is-interactive
   alias r=ranger
   alias v=nvim
   alias g=grep
+  alias mount_cube_sync="sudo sshfs -o allow_other,default_permissions jv@cube:/home/jv/Sync/ ~/Sync/"
+  alias reconnect_tmux="tmux new -As DEFAULT"
 end
