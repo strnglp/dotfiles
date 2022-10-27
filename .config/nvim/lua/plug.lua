@@ -10,11 +10,13 @@
   -- [[ LSP config End -- extensive setup called by lsp.lua ]]
 
   -- [[ Snippet config Start ]]
-  use "hrsh7th/nvim-cmp" -- autocompletion plugin
   use "hrsh7th/cmp-nvim-lsp" -- LSP source for nvim-cmp
-  use "hrsh7th/cmp-buffer" -- LSP source for nvim-cmp
-  use "saadparwaiz1/cmp_luasnip" -- Snippets source for nvim-cmp
+  use "hrsh7th/cmp-buffer"
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use "hrsh7th/nvim-cmp" -- autocompletion plugin
   use "L3MON4D3/LuaSnip" -- snippets plugin
+  use "saadparwaiz1/cmp_luasnip" -- Snippets source for nvim-cmp
   use "onsails/lspkind.nvim" -- pictograms for autocompletion list
   -- [[ Snippet config End -- extensive setup called in snippet.lua ]]
 

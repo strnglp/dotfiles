@@ -2,19 +2,23 @@
 -- Language server config
 
 -- Enable (broadcasting) snippet capability for completion
---local capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 
 require("mason").setup()
 require("mason-lspconfig").setup()
 local lspconfig = require("lspconfig")
-lspconfig.jsonls.setup{ capabilities = capabilities, }
-lspconfig.cssls.setup{ capabilities = capabilities, }
-lspconfig.eslint.setup{}
-lspconfig.html.setup{ capabilities = capabilities, }
+-- Use a loop to conveniently call 'setup' on multiple servers and
+-- map buffer local keybindings when the language server attaches
+local servers = { 'cssls', 'eslint', 'html', 'jsonls', 'tsserver', 'pyright', 'vimls',  }
+for _, lsp in pairs(servers) do
+  lspconfig[lsp].setup {
+    capabilities = capabilities,
+  }
+end
+-- special setup for lua to fix up some nonsense
 lspconfig.sumneko_lua.setup{
+  capabilities = capabilities,
   -- clear the workspace dir when it is in ~/ to prevent errors 
   root_dir = function(fname)
     local path = lspconfig.util.find_git_ancestor(fname)
@@ -44,6 +48,3 @@ lspconfig.sumneko_lua.setup{
     },
   },
 }
-lspconfig.tsserver.setup{}
-lspconfig.pyright.setup{}
-lspconfig.vimls.setup{}
