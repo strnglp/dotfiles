@@ -60,9 +60,11 @@
   use "mhinz/vim-startify" -- start page
 
   -- [[ Themes ]]
-  use("Th3Whit3Wolf/one-nvim")
-  use("NLKNguyen/papercolor-theme")
-  use("preservim/vim-colors-pencil")
+  use "preservim/vim-colors-pencil"
+  use "f-person/auto-dark-mode.nvim"
+  require('auto-dark-mode').setup({})
+  require('auto-dark-mode').init()
+
 
   -- status line
   use {

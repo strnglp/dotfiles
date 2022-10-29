@@ -12,6 +12,7 @@ require("snippet") -- 5. Snippets
 
 vim.cmd([[ 
 colorscheme pencil 
+set background=light
 hi Normal guibg=NONE ctermbg=NONE
 
 let g:loaded_perl_provider = 0
