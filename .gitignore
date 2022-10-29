@@ -1,0 +1,13 @@
+# Ignore everything to be safe, this is my home directory after all...
+*
+
+# unignore paths that should be included in the rpo
+!.gitignore
+!.tmux.conf
+!.xinitrc
+!.xprofile
+!.config/awesome
+!.config/fish
+!.config/kitty
+!.config/nvim
+!.config/picom

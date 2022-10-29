@@ -9,7 +9,7 @@ if status is-interactive
 
   # create or attach to "session"
   if not [ $TMUX ]
-    tmux new -As DEFAULT
+    tmux new -As (hostname)
   end
 
   # use LS_COLORS
