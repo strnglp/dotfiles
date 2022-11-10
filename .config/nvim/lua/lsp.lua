@@ -31,7 +31,7 @@ end
 
 -- register the capabilities to support snippets
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 require('mason-lspconfig').setup {
   automatic_installation = true;
@@ -50,6 +50,17 @@ for _, lsp in pairs(servers) do
     capabilities = capabilities,
   }
 end
+
+-- hide global variable vim warning in nvim lua files
+lspconfig.sumneko_lua.setup{
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
+}
 
 -- make gutter use signs instead of letters
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
