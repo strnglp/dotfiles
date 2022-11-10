@@ -71,6 +71,7 @@ awful.layout.layouts = {
 system_menu = {
   {"bsd", "bootbsd"},
   {"windows", "bootwindows"},
+  {"hibernate", "sudo loginctl hibernate"},
   {"restart", "sudo reboot"},
   {"shutdown", "sudo poweroff"}
 }
