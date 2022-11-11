@@ -1,6 +1,7 @@
 if status is-interactive
 
   fish_add_path /home/jv/bin/
+  fish_add_path /home/jv/.cargo/bin/
 
   # hide help greeting
   set -g fish_greeting

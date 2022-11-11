@@ -49,7 +49,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("~/.config/awesome/themes/mytheme.lua")
-terminal    = "kitty"
+terminal    = "wezterm"
 editor      = os.getenv("EDITOR") or "nvim"
 editor_cmd  = terminal .. " -e " .. editor
 modkey      = "Mod1"
