@@ -1,4 +1,5 @@
 
 [Default Applications]
 inode/directory=nemo.desktop
+inode/mount-point=nemo.desktop
 text/plain=nvim.desktop

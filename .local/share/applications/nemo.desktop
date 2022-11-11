@@ -101,7 +101,7 @@ Comment[uk]=Доступ до файлів і  їх впорядковуванн
 Comment[zh_CN]=访问和组织文件
 Comment[zh_HK]=存取與組織檔案
 Comment[zh_TW]=存取並組織檔案
-Exec=nemo_bg "%U &>/dev/null"
+Exec=nemo_bg
 Icon=system-file-manager
 # Translators: these are keywords of the file manager
 Keywords=folders;filesystem;explorer;
@@ -180,7 +180,7 @@ Name[vi]=Nhà
 Name[zh_CN]=主目录
 Name[zh_HK]=家
 Name[zh_TW]=家
-Exec=nemo_bg %U "%U &>/dev/null"
+Exec=nemo_bg
 
 [Desktop Action open-computer]
 Name=Computer
