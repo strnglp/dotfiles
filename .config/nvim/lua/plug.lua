@@ -61,7 +61,7 @@
 
   -- [[ Themes ]]
   use "preservim/vim-colors-pencil"
-  use "f-person/auto-dark-mode.nvim"
+  use "strnglp/auto-dark-mode.nvim"
   require('auto-dark-mode').setup({})
   require('auto-dark-mode').init()
 
