@@ -1,11 +1,10 @@
 --[[ opts.lua ]]
 local opt = vim.opt
-local cmd = vim.api.nvim_command
 
 -- [[ Theme ]]
 opt.syntax = 'on'
 opt.background='dark'
-opt.termguicolors = true
+opt.termguicolors= true
 
 -- mouse in all modes
 opt.mouse='a'
@@ -61,4 +60,11 @@ opt.ignorecase = true
 
 -- for autocompletion snippets
 opt.completeopt = {'menu', 'menuone', 'noselect'}
+
+-- make gutter use signs instead of letters
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# TODO: Account for overriding manually
+# currently this script will just stomp any external changes
+while :; do
+  HOUR=$(date +%H)
+  VARIANT="prefer-light" # default to light
+  if [[ $HOUR -gt 17 || $HOUR -lt 6 ]]; then
+    VARIANT="prefer-dark"
+  fi
+
+  # get the current variant, and strip the surrounding single quote '
+  CUR=$(gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g")
+
+  if [[ $CUR != $VARIANT ]]; then
+    $(gsettings set org.gnome.desktop.interface color-scheme $VARIANT)
+  fi
+
+  sleep 3 # just matching auto-dark-mode vim plugin
+done

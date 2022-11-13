@@ -1,28 +1,19 @@
--- IMPORTS
-require('plug')         -- Plugins
-require('vars')         -- Variables
-require('opts')         -- Options
-require('keys')         -- Keymaps
-require('lsp')          -- LSP
+local status, bootstrap = pcall(require, "bootstrap")
+if not status then
+  return
+end
+-- Must have packer to install and configure the rest of the config
+bootstrap.bootstrap()
+require("opts")    -- 1. NeoVim Options
+require("keys")    -- 2. Keymaps
+require("plug")    -- 3. Plugins
+require("lsp")     -- 4. LSP(plugin config)
+require("snippet") -- 5. Snippets
 
--- not sure how to do this in lua yet
-vim.cmd([[
-set termguicolors
-"set spell spelllang=en_us
-
-colorscheme pencil
+vim.cmd([[ 
+colorscheme pencil 
+set background=light
 hi Normal guibg=NONE ctermbg=NONE
 
-"hi Cursor gui=reverse guibg=NONE guifg=NONE
-"hi CursorLine gui=reverse
-
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-" Also don't do it when the mark is in the first line, that is the default
-" position when opening a file.
-autocmd BufReadPost *
-\ if line("'\"") > 1 && line("'\"") <= line("$") |
-\   exe "normal! g`\"" |
-\ endif
+let g:loaded_perl_provider = 0
 ]])

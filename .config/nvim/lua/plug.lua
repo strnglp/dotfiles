@@ -1,108 +1,79 @@
 -- [[ plug.lua ]]
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
+-- bootstrap.lua ensures packer is installed, must be called ahead of this
+  return require("packer").startup(function(use)
+  use "wbthomason/packer.nvim" -- plugin manager
 
-local packer_bootstrap = ensure_packer()
+  -- [[ LSP config Start -- Order matters ]]
+  use "williamboman/mason.nvim" -- language server package manager
+  use "williamboman/mason-lspconfig.nvim" -- lspconfig helper
+  use "neovim/nvim-lspconfig" -- language server configuration
+  -- [[ LSP config End -- extensive setup called by lsp.lua ]]
 
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim' -- plugin manager
+  -- [[ Snippet config Start ]]
+  use "hrsh7th/cmp-nvim-lsp" -- LSP source for nvim-cmp
+  use "hrsh7th/cmp-buffer"
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use "hrsh7th/nvim-cmp" -- autocompletion plugin
+  use "L3MON4D3/LuaSnip" -- snippets plugin
+  use "saadparwaiz1/cmp_luasnip" -- Snippets source for nvim-cmp
+  use "onsails/lspkind.nvim" -- pictograms for autocompletion list
+  -- [[ Snippet config End -- extensive setup called in snippet.lua ]]
 
-  -- [[ LSP config -- Order matters ]]
+  -- error / warning details
   use {
-    "williamboman/mason.nvim", -- language server package manager
-    "williamboman/mason-lspconfig.nvim", -- lspconfig helper
-    "neovim/nvim-lspconfig", -- language server configuration
-    'hrsh7th/nvim-cmp', -- autocompletion plugin
-    'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
-    'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-    'L3MON4D3/LuaSnip', -- snippets plugin
-    'onsails/lspkind.nvim' -- pictograms for autocompletion list
+    "folke/lsp-trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
   }
-  require('mason').setup()
-  require('mason-lspconfig').setup()
-  ----------------------------------
+  require("trouble").setup()
 
-  -- better highlighting
+  -- general purpose language server, primarily for prettier
   use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = "nvim-lua/plenary.nvim",
   }
-
-  use 'mhinz/vim-startify'-- start page
-  use 'junegunn/goyo.vim' -- distraction free writing
-  use 'wuelnerdotexe/vim-astro' -- blog dev
-  -- live preview markdown in browser
-  use {
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
+  require("null-ls").setup {
+    sources = {
+      require("null-ls").builtins.completion.luasnip
+    }
   }
 
   -- fuzzy find
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = 'nvim-lua/plenary.nvim'
+    "nvim-telescope/telescope.nvim",
+    branch = '0.1.x',
+    requires = "nvim-lua/plenary.nvim",
   }
 
   -- file tree
   use {
-    'kyazdani42/nvim-tree.lua',
-    config = function() require('nvim-tree').setup() end,
-    requires = 'kyazdani42/nvim-web-devicons'
+    "kyazdani42/nvim-tree.lua",
+    requires = "kyazdani42/nvim-web-devicons",
   }
+  require("nvim-tree").setup()
 
-  -- hex/css coloring
-  use {
-    'norcalli/nvim-colorizer.lua',
-    config = function() require('colorizer').setup({'*'}) end
-  }
+  use "norcalli/nvim-colorizer.lua" -- hex/css coloring
+  use "dinhhuy258/git.nvim" -- git integration
+  use "lewis6991/gitsigns.nvim" -- git status gutter
+  use "windwp/nvim-autopairs" -- autopairs
+  use "nvim-treesitter/nvim-treesitter" -- better highlighting
+  use "mhinz/vim-startify" -- start page
+
+  -- [[ Themes ]]
+  use "preservim/vim-colors-pencil"
+  use "strnglp/auto-dark-mode.nvim"
+  require("auto-dark-mode").setup({})
+  require("auto-dark-mode").init()
+
 
   -- status line
   use {
-    'nvim-lualine/lualine.nvim',
-    config = function() require('lualine').setup {
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+        config = function() require('lualine').setup {
       options = { theme = 'auto' }
-      --options = { theme = 'PaperColor' }
     } end,
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-
-  -- git integration
-  use 'dinhhuy258/git.nvim'
-  require('git').setup()
-  -- git status gutter
-  use 'lewis6991/gitsigns.nvim'
-
-  -- autopairs
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {map_cr = true} end
-  }
-  use {
-    "folke/lsp-trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-
-  -- [[ Themes ]]
-  use 'koron/vim-monochromenote'
-  use 'Th3Whit3Wolf/one-nvim'
-  use 'navarasu/onedark.nvim'
-  use 'NLKNguyen/papercolor-theme'
-  use 'preservim/vim-colors-pencil'
 
 end)
 

@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local mux = wezterm.mux
 
 function scheme_for_appearance(appearance)
-  if appearance:find("Dark") then
+  if appearance:lower():find("dark") then
     return "ModifiedPencilDark"
   else
     return "ModifiedPencilLight"
@@ -11,7 +11,7 @@ end
 
 wezterm.on("window-config-reloaded", function(window, pane)
   local overrides = window:get_config_overrides() or {}
-  local appearance = window:get_appearance()
+  local appearance = wezterm.gui.get_appearance()
   local scheme = scheme_for_appearance(appearance)
   if overrides.color_scheme ~= scheme then
     overrides.color_scheme = scheme

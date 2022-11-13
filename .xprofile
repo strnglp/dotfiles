@@ -5,6 +5,7 @@ export $(dbus-launch)
 if command -v dbus-launch >/dev/null && test -z "${DBUS_SESSION_BUS_ADDRESS}"; then
        eval $(dbus-launch --sh-syntax --exit-with-session)
 fi
+/usr/libexec/xdg-desktop-portal-gtk -r &
 gentoo-pipewire-launcher & # pipewire / pulseaudio compat
 
 setxkbmap -option "ctrl:swapcaps"
@@ -19,3 +20,5 @@ picom --config ~/.config/picom/config & # compositor
 
 mpg123 -q ~/.config/awesome/login.mp3  # hack: wake up the sound-server so volumeicon can launch
 volumeicon & # start volumeicon after pipewire 
+
+theme_switcher >/dev/null & # change theme to dark mode at night

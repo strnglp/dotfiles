@@ -1,3 +1,3 @@
 #!/bin/sh
-source .xprofile
+source ~/.xprofile
 exec awesome
